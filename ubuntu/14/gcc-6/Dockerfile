@@ -59,4 +59,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="g++-5" CC=gcc-"5"
+ENV CXX="g++-6" CC="gcc-6"
