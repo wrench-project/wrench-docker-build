@@ -45,12 +45,6 @@ RUN wget https://github.com/nlohmann/json/archive/v2.1.1.tar.gz && tar -xf v2.1.
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0/googletest && cmake . && make && sudo make install && cd ../..
 
-# install ZMQ
-RUN wget http://download.zeromq.org/zeromq-4.0.5.tar.gz && tar xvzf zeromq-4.0.5.tar.gz && cd zeromq-4.0.5 && ./configure && sudo make install && cd ..
-
-# install CPPZMQ
-RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.3.tar.gz && tar xf v4.2.3.tar.gz && cd cppzmq-4.2.3/ && mkdir build && cd build/ && cmake .. && sudo make -j4 install && cd ../../
-
 #################################################
 # WRENCH's user
 #################################################
