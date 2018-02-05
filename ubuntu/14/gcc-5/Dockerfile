@@ -40,7 +40,7 @@ RUN wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz && tar -xf lemon
 RUN wget https://github.com/zeux/pugixml/releases/download/v1.8.1/pugixml-1.8.1.tar.gz && tar -xf pugixml-1.8.1.tar.gz && cd pugixml-1.8 && cmake . && make && sudo make install && cd ..
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v2.1.1.tar.gz && tar -xf v2.1.1.tar.gz && cd json-2.1.1 && cmake . && make && sudo make install && cd ..
+RUN wget https://github.com/nlohmann/json/archive/v3.1.0.tar.gz && tar -xf v3.1.0.tar.gz && cd json-3.1.0 && cmake . && make && sudo make install && cd ..
 
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0/googletest && cmake . && make && sudo make install && cd ../..

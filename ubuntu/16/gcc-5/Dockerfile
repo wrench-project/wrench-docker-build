@@ -1,25 +1,16 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
 # add repositories
 RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
-RUN add-apt-repository -y ppa:george-edison55/cmake-3.x
-
-RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
-RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
-RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.7 main" >> /etc/apt/sources.list
-RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.7 main" >> /etc/apt/sources.list
-
-RUN apt-get update
 
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install --force-yes clang-3.7 g++-5 gcc-5
+RUN apt-get -y install g++ gcc
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
@@ -33,7 +24,9 @@ RUN gem install coveralls-lcov
 #################################################
 
 # set root's environment variable
-ENV CXX="clang++-3.7" CC="clang-3.7"
+ENV CXX="g++-5" CC="gcc-5"
+
+RUN apt-get -y install sudo
 
 # install SimGrid
 RUN wget https://gforge.inria.fr/frs/download.php/file/37148/SimGrid-3.17.tar.gz && tar -xf SimGrid-3.17.tar.gz && cd SimGrid-3.17 && cmake . && make && sudo make install && cd ..
@@ -58,4 +51,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="clang++-3.7" CC="clang-3.7"
+ENV CXX="g++-5" CC="gcc-5"

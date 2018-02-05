@@ -5,9 +5,13 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 # add repositories
 RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
-RUN add-apt-repository ppa:ubuntu-toolchain-r/test
-RUN add-apt-repository ppa:george-edison55/cmake-3.x
-RUN add-apt-repository ppa:h-rayflood/llvm-upper
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN add-apt-repository -y ppa:george-edison55/cmake-3.x
+
+RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
+RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
+RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list
+RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list
 
 RUN apt-get update
 
@@ -15,7 +19,7 @@ RUN apt-get update
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install clang-3.6
+RUN apt-get -y install --force-yes clang-3.6 g++-5 gcc-5
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
@@ -41,7 +45,7 @@ RUN wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz && tar -xf lemon
 RUN wget https://github.com/zeux/pugixml/releases/download/v1.8.1/pugixml-1.8.1.tar.gz && tar -xf pugixml-1.8.1.tar.gz && cd pugixml-1.8 && cmake . && make && sudo make install && cd ..
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v2.1.1.tar.gz && tar -xf v2.1.1.tar.gz && cd json-2.1.1 && cmake . && make && sudo make install && cd ..
+RUN wget https://github.com/nlohmann/json/archive/v3.1.0.tar.gz && tar -xf v3.1.0.tar.gz && cd json-3.1.0 && cmake . && make && sudo make install && cd ..
 
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0/googletest && cmake . && make && sudo make install && cd ../..
