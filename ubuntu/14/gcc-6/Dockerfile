@@ -32,7 +32,7 @@ ENV CXX="g++-6" CC="gcc-6"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://gforge.inria.fr/frs/download.php/file/37148/SimGrid-3.17.tar.gz && tar -xf SimGrid-3.17.tar.gz && cd SimGrid-3.17 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.17*
+RUN wget https://gforge.inria.fr/frs/download.php/file/37452/SimGrid-3.19.tar.gz && tar -xf SimGrid-3.19.tar.gz && cd SimGrid-3.19 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.19*
 
 # install Lemon
 RUN wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz && tar -xf lemon-1.3.1.tar.gz && cd lemon-1.3.1 && cmake . && make && sudo make install && cd .. && rm -rf lemon-1.3.1*
