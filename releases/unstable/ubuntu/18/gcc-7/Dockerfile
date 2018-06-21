@@ -2,8 +2,6 @@ FROM wrenchproject/wrench-build:ubuntu-bionic-gcc7
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
-ENV WRENCH_VERSION="1.0.0"
-
 #################################################
 # INSTALL WRENCH
 #################################################
@@ -12,14 +10,14 @@ USER root
 WORKDIR /tmp
 
 # install WRENCH
-RUN wget https://github.com/wrench-project/wrench/archive/${WRENCH_VERSION}.tar.gz && tar -zxf ${WRENCH_VERSION}.tar.gz && cd wrench-${WRENCH_VERSION} && cmake . && make && sudo make install
+RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make && sudo make install
 
 # copy examples
-RUN cd wrench-${WRENCH_VERSION} && mkdir -p /home/wrench/examples && cp -R examples/simple-example/platform_files /home/wrench/examples/ && cp -R examples/simple-example/workflow_files /home/wrench/examples/
-RUN chown -R wrench /home/wrench/examples
+RUN cp -R wrench/build/examples/simple-example/workflow_files /home/wrench && cp -R wrench/build/examples/simple-example/platform_files /home/wrench
+RUN chown -R wrench /home/wrench
 
 # remove installation folder
-RUN rm -rf wrench-${WRENCH_VERSION}
+RUN rm -rf wrench
 
 #################################################
 # WRENCH's user
