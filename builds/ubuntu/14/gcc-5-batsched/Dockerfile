@@ -61,7 +61,7 @@ RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2
 
 RUN wget https://framagit.org/batsim/intervalset/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd intervalset-master-* && mkdir build && cd build && cmake  -DCMAKE_CXX_FLAGS="-std=c++14" -DCMAKE_INSTALL_PREFIX=/usr/local .. && make && sudo make install && cd ../../ && rm -rf intervalset-master-* archive.tar.gz
 
-RUN curl -o /usr/local/include/loguru.hpp https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp
+RUN sudo curl -o /usr/local/include/loguru.hpp https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp
 
 RUN wget https://gitlab.inria.fr/batsim/batsched/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd batsched-master* && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make && sudo make install && cd ../../ && rm -rf batsched-master* archive.tar.gz
 
