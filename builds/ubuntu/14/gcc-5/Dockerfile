@@ -16,11 +16,13 @@ RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 # install compiler
 RUN apt-get -y install g++-5 gcc-5
 
+#RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
+RUN apt-get -y install pkg-config git doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
+
 #install a RECENT CMAKE
 RUN wget https://cmake.org/files/v3.12/cmake-3.12.2.tar.gz && gunzip cmake-3.12.2.tar.gz && tar -xf cmake-3.12.2.tar && cd cmake-3.12.2 && ./bootstrap && make && sudo make install && cd .. && rm -rf cmake-3.12.2*
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
 
 # configure coveralls
 RUN apt-get -y install lcov
