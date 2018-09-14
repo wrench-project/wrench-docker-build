@@ -17,7 +17,7 @@ RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 RUN apt-get -y install g++-5 gcc-5
 
 #RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
-RUN apt-get -y install pkg-config git doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
+RUN apt-get -y install pkg-config git make doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
 
 # build environment
 
