@@ -16,7 +16,7 @@ RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 # install compiler
 RUN apt-get -y install g++-5 gcc-5
 
-#RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
+#RUN apt-get -y install pkg-config git make cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
 RUN apt-get -y install pkg-config git make doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
 
 # build environment
@@ -32,7 +32,8 @@ RUN gem install coveralls-lcov
 # set root's environment variable
 ENV CXX="g++-5" CC="gcc-5"
 
-#install a RECENT CMAKE
+# Install a recent CMAKE, which is overkill but necessary for the 
+# Batsched-enabled image
 RUN wget https://cmake.org/files/v3.12/cmake-3.12.2.tar.gz && gunzip cmake-3.12.2.tar.gz && tar -xf cmake-3.12.2.tar && cd cmake-3.12.2 && ./bootstrap && make && sudo make install && cd .. && rm -rf cmake-3.12.2*
 
 WORKDIR /tmp
