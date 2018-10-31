@@ -12,7 +12,7 @@ ENV CXX="g++-5" CC="gcc-5"
 WORKDIR /tmp
 
 #install a RECENT CMAKE
-#RUN wget https://cmake.org/files/v3.12/cmake-3.12.2.tar.gz && gunzip cmake-3.12.2.tar.gz && tar -xf cmake-3.12.2.tar && cd cmake-3.12.2 && ./bootstrap && make && sudo make install && cd .. && rm -rf cmake-3.12.2*
+RUN wget https://cmake.org/files/v3.12/cmake-3.12.2.tar.gz && gunzip cmake-3.12.2.tar.gz && tar -xf cmake-3.12.2.tar && cd cmake-3.12.2 && ./bootstrap && make && sudo make install && cd .. && rm -rf cmake-3.12.2*
 
 #install ASCIIDOC
 RUN wget https://newcontinuum.dl.sourceforge.net/project/asciidoc/asciidoc/8.6.9/asciidoc-8.6.9.tar.gz && tar -xzf asciidoc-8.6.9.tar.gz && cd asciidoc-8.6.9 && ./configure && sudo make install && cd .. && rm -rf asciidoc*
@@ -58,11 +58,14 @@ RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2
 # BatSched
 #################################################
 
+# Intervalset
 RUN wget https://framagit.org/batsim/intervalset/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd intervalset-master-* && mkdir build && cd build && cmake  -DCMAKE_CXX_FLAGS="-std=c++14" -DCMAKE_INSTALL_PREFIX=/usr/local .. && make && sudo make install && cd ../../ && rm -rf intervalset-master-* archive.tar.gz
 
-#RUN sudo curl -o /usr/local/include/loguru.hpp https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp
-RUN wget https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp && sudo cp ./loguru.hpp /usr/local/include/ && rm loguru.hpp
+# Loguru
+#RUN wget https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp && sudo cp ./loguru.hpp /usr/local/include/ && rm loguru.hpp
+RUN wget https://github.com/emilk/loguru/archive/v2.0.0.tar.gz && tar -xf v2.0.0.tar.gz && cd loguru-* &&  sudo cp ./loguru.hpp /usr/local/include/ && $CXX -std=c++11 -o libloguru.so -shared -pthread -fPIC loguru.cpp && sudo cp ./libloguru.so /usr/local/lib/ &&  cd .. && rm -rf loguru-* v2.0.0.tar.gz 
 
+# Batsched
 RUN wget https://gitlab.inria.fr/batsim/batsched/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd batsched-master* && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make && sudo make install && cd ../../ && rm -rf batsched-master* archive.tar.gz
 
 
