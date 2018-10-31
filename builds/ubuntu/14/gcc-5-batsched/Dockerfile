@@ -50,8 +50,8 @@ RUN ln -s /usr/bin/g++-5 /usr/bin/g++
 RUN wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz && tar -xf boost_1_65_1.tar.gz && cd boost_1_65_1/ && ./bootstrap.sh && sudo ./b2 install --prefix=/usr/local && cd .. && rm -rf boost_1_65_1*
 
 # install CPPZMQ
-RUN wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz && tar xvzf zeromq-4.2.2.tar.gz && cd zeromq-4.2.2 && ./configure && make install && cd .. && rm -rf zeromq-4.2.2
-RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2.tar.gz && cd cppzmq-4.2.2/ && mkdir build && cd build/ && cmake .. && sudo make -j4 install && cd ../../ && rm -rf v4.2.2.tar.gz cppzmq*
+RUN wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz && tar xvzf zeromq-4.2.2.tar.gz && cd zeromq-4.2.2 && ./configure && make  && sudo make install && cd .. && rm -rf zeromq-4.2.2
+RUN wget https://github.com/zeromq/cppzmq/archive/v4.3.0.tar.gz && tar xf v4.3.0.tar.gz && cd cppzmq-4.3.0/ && mkdir build && cd build/ && cmake .. && make -j4 &&  sudo make install && cd ../../ && rm -rf v4.3.0.tar.gz cppzmq*
 
 
 #################################################
