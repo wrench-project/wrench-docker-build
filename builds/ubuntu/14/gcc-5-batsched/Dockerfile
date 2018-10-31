@@ -22,10 +22,10 @@ RUN apt-get install -y m4
 RUN wget http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz && tar xf autoconf* && cd autoconf-2.69 && sh configure --prefix /usr/local && sudo make install && cd .. && rm -rf autoconf*
 
 # install AUTOMAKE
-RUN wget http://ftp.gnu.org/gnu/automake/automake-1.15.tar.gz && tar xf automake* && cd automake-1.15 && sh configure --prefix /usr/local && sudo make install && cd .. && rm -rf automake*
+RUN wget http://ftp.gnu.org/gnu/automake/automake-1.15.tar.gz && tar xf automake* && cd automake-1.15 && sh configure --prefix /usr/local && make && sudo make install && cd .. && rm -rf automake*
 
 # install LIBTOOL
-RUN wget http://mirror.jre655.com/GNU/libtool/libtool-2.4.6.tar.gz && tar xf libtool* && cd libtool-2.4.6 && sh configure --prefix /usr/local && sudo make install && cd .. && rm -rf libtool*
+RUN wget http://mirror.jre655.com/GNU/libtool/libtool-2.4.6.tar.gz && tar xf libtool* && cd libtool-2.4.6 && sh configure --prefix /usr/local && make && sudo make install && cd .. && rm -rf libtool*
 
 # install LIBSODIUM
 RUN wget https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz && tar xf libsodium* && cd libsodium-1.0.16 && ./configure && make check && sudo make install && cd .. && rm -rf libsodium*
