@@ -54,14 +54,15 @@ RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2
 #################################################
 
 # Intervalset
-RUN wget https://framagit.org/batsim/intervalset/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd intervalset-master-* && mkdir build && cd build && cmake  -DCMAKE_CXX_FLAGS="-std=c++14" -DCMAKE_INSTALL_PREFIX=/usr/local .. && make && sudo make install && cd ../../ && rm -rf intervalset-master-* archive.tar.gz
+RUN apt-get install -y python3-pip ninja-build && pip3 install --user meson && mv /root/.local/bin/meson /usr/local/bin
+RUN wget https://framagit.org/batsim/intervalset/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd intervalset-master-* && meson build && cd build && ninja && sudo meson install && cd ../.. && rm -rf intervalset-master-* archive.tar.gz
 
 # Loguru
 #RUN wget https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp && sudo cp ./loguru.hpp /usr/local/include/ && rm loguru.hpp
 RUN wget https://github.com/emilk/loguru/archive/v2.0.0.tar.gz && tar -xf v2.0.0.tar.gz && cd loguru-* &&  sudo cp ./loguru.hpp /usr/local/include/ && $CXX -std=c++11 -o libloguru.so -shared -pthread -fPIC loguru.cpp && sudo cp ./libloguru.so /usr/local/lib/ &&  cd .. && rm -rf loguru-* v2.0.0.tar.gz
 
 # Batsched
-RUN wget https://gitlab.inria.fr/batsim/batsched/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd batsched-master* && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make && sudo make install && cd ../../ && rm -rf batsched-master* archive.tar.gz
+RUN wget https://gitlab.inria.fr/batsim/batsched/repository/master/archive.tar.gz && tar -xf archive.tar.gz && cd batsched-master-* && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make && sudo make install && cd ../../ && rm -rf batsched-master* archive.tar.gz
 
 
 #################################################
