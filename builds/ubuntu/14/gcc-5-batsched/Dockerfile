@@ -47,6 +47,7 @@ RUN git clone https://github.com/hmartiro/redox.git && cd redox && mkdir build &
 
 # install BOOST
 RUN ln -s /usr/bin/g++-5 /usr/bin/g++
+RUN sudo apt install build-essential
 RUN wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz && tar -xf boost_1_65_1.tar.gz && cd boost_1_65_1/ && ./bootstrap.sh && sudo ./b2 install --prefix=/usr/local && cd .. && rm -rf boost_1_65_1*
 
 # install CPPZMQ
