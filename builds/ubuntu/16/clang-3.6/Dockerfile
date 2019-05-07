@@ -6,6 +6,11 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
 
+RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
+RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
+RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.6 main" >> /etc/apt/sources.list
+RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.6 main" >> /etc/apt/sources.list
+
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
@@ -52,4 +57,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="g++-5" CC="gcc-5"
+ENV CXX="clang++-3.6" CC="clang-3.6"
