@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 #RUN add-apt-repository -y ppa:george-edison55/cmake-3.x
-RUN add-apt-repository -y ppa:nschloe/cmake-nightly
+RUN add-apt-repository -y ppa:ppsspp/cmake
 
 RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
 RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
