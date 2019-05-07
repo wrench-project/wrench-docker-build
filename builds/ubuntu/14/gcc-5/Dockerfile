@@ -6,7 +6,8 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
-RUN add-apt-repository ppa:george-edison55/cmake-3.x
+#RUN add-apt-repository ppa:george-edison55/cmake-3.x
+RUN add-apt-repository ppa:nschloe/cmake-nightly
 
 RUN apt-get update
 
