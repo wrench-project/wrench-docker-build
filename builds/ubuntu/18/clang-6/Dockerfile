@@ -1,21 +1,18 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
 # add repositories
 RUN apt-get update
-RUN apt-get -y install software-properties-common python-software-properties
-
-#RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
-#RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
-#RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.7 main" >> /etc/apt/sources.list
-#RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.7 main" >> /etc/apt/sources.list
 
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install --force-yes clang-7
+RUN apt-get -y install clang
+
+# set timezone
+RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
@@ -30,7 +27,7 @@ RUN gem install coveralls-lcov
 #################################################
 
 # set root's environment variable
-ENV CXX="clang++-3.7" CC="clang-3.7"
+ENV CXX="g++-7" CC="gcc-7"
 WORKDIR /tmp
 
 # install SimGrid
@@ -57,4 +54,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="clang++-3.7" CC="clang-3.7"
+ENV CXX="g++-7" CC="gcc-7"
