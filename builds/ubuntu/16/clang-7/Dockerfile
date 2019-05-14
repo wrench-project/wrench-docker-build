@@ -30,7 +30,7 @@ RUN gem install coveralls-lcov
 #################################################
 
 # set root's environment variable
-ENV CXX="clang++-3.7" CC="clang-3.7"
+ENV CXX="clang++-7" CC="clang-7"
 WORKDIR /tmp
 
 # install SimGrid
@@ -57,4 +57,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="clang++-3.7" CC="clang-3.7"
+ENV CXX="clang++-7" CC="clang-7"
