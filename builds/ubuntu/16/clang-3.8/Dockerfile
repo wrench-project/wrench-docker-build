@@ -6,16 +6,11 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
 
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
-RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" >> /etc/apt/sources.list
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.6 main" >> /etc/apt/sources.list
-RUN echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.6 main" >> /etc/apt/sources.list
-
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install --force-yes clang-3.6 g++-5 gcc-5
+RUN apt-get -y install --force-yes clang
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
