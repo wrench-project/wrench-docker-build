@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN add-apt-repository ppa:george-edison55/cmake-3.x
+RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test  
 
 RUN apt-get update
 
