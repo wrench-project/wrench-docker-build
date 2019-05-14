@@ -5,6 +5,8 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 # add repositories
 RUN apt-get update
 RUN apt-get -y install software-properties-common python-software-properties
+RUN add-apt-repository ppa:ubuntu-toolchain-r/test
+RUN apt-get update
 
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
