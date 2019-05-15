@@ -15,7 +15,7 @@ RUN apt-get -y install software-properties-common python-software-properties
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install --force-yes clang-7
+RUN apt-get -y install --force-yes clang-6.0
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
@@ -30,7 +30,7 @@ RUN gem install coveralls-lcov
 #################################################
 
 # set root's environment variable
-ENV CXX="clang++-7" CC="clang-7"
+ENV CXX="clang++-6.0" CC="clang-6.0"
 WORKDIR /tmp
 
 # install SimGrid
@@ -57,4 +57,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="clang++-7" CC="clang-7"
+ENV CXX="clang++-6.0" CC="clang-6.0"
