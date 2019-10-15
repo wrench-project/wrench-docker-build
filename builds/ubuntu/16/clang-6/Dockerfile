@@ -34,7 +34,8 @@ ENV CXX="clang++-6.0" CC="clang-6.0"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/uploads/3534bcfaad8eabe95546e99961a01a20/SimGrid-3.23.2.tar.gz && tar -xf SimGrid-3.23.2.tar.gz && cd SimGrid-3.23.2 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.23*
+RUN wget https://framagit.org/simgrid/simgrid/uploads/ddd14d9e34ee36bc90d9107f12480c28/SimGrid-3.24.tar.gz && tar -xf SimGrid-3.24.tar.gz && cd SimGrid-3.24 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.24*
+
 
 
 # install Lemon
