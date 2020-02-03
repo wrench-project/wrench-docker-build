@@ -33,7 +33,7 @@ RUN wget https://ftp.gnu.org/gnu/gmp/gmp-6.1.2.tar.xz && tar -xf gmp-6.1.2.tar.x
 RUN wget https://github.com/Tencent/rapidjson/archive/v1.1.0.tar.gz && gunzip v1.1.0.tar.gz && tar -xf v1.1.0.tar && cd rapidjson-1* && find ./ -type f -exec sed -i -e 's/-Werror//g' {} \; && mkdir build && cd build && cmake .. && make && sudo make install && cd ../../ && rm -rf rapidjson-1* v1.1.0.tar.gz
 
 # install HIREDIS
-RUN git clone https://github.com/redis/hiredis.git && cd hiredis && make && sudo make install && cd .. && rm -rf hiredis
+RUN wget https://github.com/redis/hiredis/archive/v0.14.0.tar.gz  && gunzip v0.14.0.tar.gz && tar -xvf v0.14.0.tar && cd hiredis* && make && sudo make install && cd .. && rm -rf hiredis*
 
 # install LIBEV
 RUN apt-get install -y libev4 libev-dev
@@ -72,5 +72,3 @@ RUN wget https://gitlab.inria.fr/batsim/batsched/repository/master/archive.tar.g
 USER wrench
 WORKDIR /home/wrench
 
-# set user's environment variable
-ENV CXX="g++-7" CC="gcc-7"
