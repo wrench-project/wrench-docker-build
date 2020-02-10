@@ -1,29 +1,22 @@
-FROM ubuntu:trusty
+FROM ubuntu:bionic
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
 # add repositories
-RUN apt-get update
-RUN apt-get -y install software-properties-common python-software-properties
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
-#RUN add-apt-repository -y ppa:george-edison55/cmake-3.x
-RUN add-apt-repository -y ppa:ppsspp/cmake
-
-RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
-RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty main" >> /etc/apt/sources.list
-RUN echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list
-RUN echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.6 main" >> /etc/apt/sources.list
-
 RUN apt-get update
 
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install --force-yes clang-3.6 g++-5 gcc-5
+RUN apt-get -y install clang
+
+# set timezone
+RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
+RUN apt-get -y install sudo
 
 # configure coveralls
 RUN apt-get -y install lcov
@@ -34,7 +27,7 @@ RUN gem install coveralls-lcov
 #################################################
 
 # set root's environment variable
-ENV CXX="clang++-3.6" CC="clang-3.6"
+ENV CXX="g++-7" CC="gcc-7"
 WORKDIR /tmp
 
 # install SimGrid
@@ -49,7 +42,6 @@ RUN wget https://github.com/zeux/pugixml/releases/download/v1.8.1/pugixml-1.8.1.
 # install json for modern c++
 RUN wget https://github.com/nlohmann/json/archive/v3.7.0.tar.gz && tar -xf v3.7.0.tar.gz && cd json-3.7.0 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.7.0* json-3.7.0
 
-
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0/googletest && cmake . && make && sudo make install && cd ../.. && rm -rf release-1.8.0.tar.gz googletest-release-1.8.0
 
@@ -61,4 +53,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="clang++-3.6" CC="clang-3.6"
+ENV CXX="g++-7" CC="gcc-7"
