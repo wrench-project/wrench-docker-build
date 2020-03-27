@@ -4,7 +4,6 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
 # add repositories
 RUN apt-get update
-RUN apt-get -y install software-properties-common
 
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
@@ -13,10 +12,9 @@ RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 RUN apt-get -y install g++ gcc
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo
+RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
 
 # configure coveralls
-RUN apt-get -y install lcov
 RUN gem install coveralls-lcov
 
 #################################################
