@@ -13,7 +13,7 @@ WORKDIR /tmp
 RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make && sudo make install
 
 # copy examples
-RUN cp -R wrench/build/examples/simple-example/workflow_files /home/wrench && cp -R wrench/build/examples/simple-example/platform_files /home/wrench
+RUN ln -s /usr/local/wrench/examples /home/wrench/examples
 RUN chown -R wrench /home/wrench
 
 # remove installation folder
