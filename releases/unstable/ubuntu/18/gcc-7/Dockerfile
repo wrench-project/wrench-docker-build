@@ -10,7 +10,7 @@ USER root
 WORKDIR /tmp
 
 # install WRENCH
-RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make && sudo make install
+RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make && make install
 
 # copy examples
 RUN ln -s /usr/local/wrench/examples /home/wrench/examples
