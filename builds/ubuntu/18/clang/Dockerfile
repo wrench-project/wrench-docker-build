@@ -17,9 +17,6 @@ RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninte
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
 
-# configure coveralls
-RUN gem install coveralls-lcov
-
 #################################################
 # WRENCH's dependencies
 #################################################
