@@ -15,11 +15,9 @@ RUN apt-get -y install clang
 RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
-RUN apt-get -y install sudo
+RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
 
 # configure coveralls
-RUN apt-get -y install lcov
 RUN gem install coveralls-lcov
 
 #################################################

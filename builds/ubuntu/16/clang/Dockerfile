@@ -4,7 +4,6 @@ MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
 # add repositories
 RUN apt-get update
-RUN apt-get -y install software-properties-common python-software-properties
 
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
@@ -13,11 +12,9 @@ RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 RUN apt-get -y install --force-yes clang
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget
-RUN apt-get -y install sudo
+RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov python-software-properties
 
 # configure coveralls
-RUN apt-get -y install lcov
 RUN gem install coveralls-lcov
 
 #################################################
@@ -30,7 +27,6 @@ WORKDIR /tmp
 
 # install SimGrid
 RUN wget https://framagit.org/simgrid/simgrid/uploads/0365f13697fb26eae8c20fc234c5af0e/SimGrid-3.25.tar.gz && tar -xf SimGrid-3.25.tar.gz && cd SimGrid-3.25 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.25*
-
 
 # install Lemon
 RUN wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz && tar -xf lemon-1.3.1.tar.gz && cd lemon-1.3.1 && cmake . && make && sudo make install && cd .. && rm -rf lemon-1.3.1*
