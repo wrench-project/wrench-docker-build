@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
@@ -9,7 +9,7 @@ RUN apt-get update
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install clang
+RUN apt-get -y install clang-10
 
 # set timezone
 RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
@@ -17,22 +17,16 @@ RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninte
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
 
-# configure coveralls
-RUN gem install coveralls-lcov
-
 #################################################
 # WRENCH's dependencies
 #################################################
 
 # set root's environment variable
-ENV CXX="g++-7" CC="gcc-7"
+ENV CXX="clang++-10" CC="clang-10"
 WORKDIR /tmp
 
 # install SimGrid
 RUN wget https://framagit.org/simgrid/simgrid/uploads/0365f13697fb26eae8c20fc234c5af0e/SimGrid-3.25.tar.gz && tar -xf SimGrid-3.25.tar.gz && cd SimGrid-3.25 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.25*
-
-# install Lemon
-RUN wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz && tar -xf lemon-1.3.1.tar.gz && cd lemon-1.3.1 && cmake . && make && sudo make install && cd .. && rm -rf lemon-1.3.1*
 
 # install pugixml
 RUN wget https://github.com/zeux/pugixml/releases/download/v1.8.1/pugixml-1.8.1.tar.gz && tar -xf pugixml-1.8.1.tar.gz && cd pugixml-1.8 && cmake . && make && sudo make install && cd .. && rm -rf pugixml-1.8*
@@ -51,4 +45,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="g++-7" CC="gcc-7"
+ENV CXX="clang++-10" CC="clang-10"

@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
@@ -9,17 +9,20 @@ RUN apt-get update
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install g++ gcc
+RUN apt-get -y install clang-9
+
+# set timezone
+RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov python-software-properties
+RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
 
 #################################################
 # WRENCH's dependencies
 #################################################
 
 # set root's environment variable
-ENV CXX="g++-5" CC="gcc-5"
+ENV CXX="clang++-9" CC="clang-9"
 WORKDIR /tmp
 
 # install SimGrid
@@ -42,4 +45,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="g++-5" CC="gcc-5"
+ENV CXX="clang++-9" CC="clang-9"
