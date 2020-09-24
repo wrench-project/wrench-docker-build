@@ -32,7 +32,7 @@ RUN wget https://framagit.org/simgrid/simgrid/uploads/0365f13697fb26eae8c20fc234
 RUN wget https://github.com/zeux/pugixml/archive/v1.10.tar.gz && tar -xf v1.10.tar.gz && cd pugixml-1.10 && cmake . && make && sudo make install && cd .. && rm -rf v1.10* pugixml-1.10*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v3.7.3.tar.gz && tar -xf v3.7.3.tar.gz && cd json-3.7.3 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.7.3* json-3.7.3
+RUN wget https://github.com/nlohmann/json/archive/v3.9.0.tar.gz && tar -xf v3.9.0.tar.gz && cd json-3.9.0 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.9.0* json-3.9.0
 
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0
