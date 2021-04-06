@@ -26,13 +26,13 @@ ENV CXX="g++-9" CC="gcc-9"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/uploads/0365f13697fb26eae8c20fc234c5af0e/SimGrid-3.25.tar.gz && tar -xf SimGrid-3.25.tar.gz && cd SimGrid-3.25 && cmake . && make && sudo make install && cd .. && rm -rf SimGrid-3.25*
+RUN wget https://framagit.org/simgrid/simgrid/uploads/98ec9471211bba09aa87d7866c9acead/simgrid-3.26.tar.gz && tar -xf simgrid-3.26.tar.gz && cd simgrid-3.26 && cmake . && make && sudo make install && cd .. && rm -rf simgrid-3.26*
 
 # install pugixml
-RUN wget https://github.com/zeux/pugixml/archive/v1.10.tar.gz && tar -xf v1.10.tar.gz && cd pugixml-1.10 && cmake . && make && sudo make install && cd .. && rm -rf v1.10* pugixml-1.10*
+RUN wget http://github.com/zeux/pugixml/releases/download/v1.11/pugixml-1.11.tar.gz && tar -xf pugixml-1.11.tar.gz && cd pugixml-1.11 && cmake . && make && sudo make install && cd .. && rm -rf pugixml-1.11*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v3.7.3.tar.gz && tar -xf v3.7.3.tar.gz && cd json-3.7.3 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.7.3* json-3.7.3
+RUN wget https://github.com/nlohmann/json/archive/v3.9.1.tar.gz && tar -xf v3.9.1.tar.gz && cd json-3.9.1 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.9.1* json-3.9.1
 
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0

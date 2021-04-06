@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM debian:bullseye
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
@@ -9,10 +9,7 @@ RUN apt-get update
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
 # install compiler
-RUN apt-get -y install clang-10
-
-# set timezone
-RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
+RUN apt-get -y install g++ gcc
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
@@ -22,7 +19,7 @@ RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxyg
 #################################################
 
 # set root's environment variable
-ENV CXX="clang++-10" CC="clang-10"
+ENV CXX="g++" CC="gcc"
 WORKDIR /tmp
 
 # install SimGrid
@@ -45,4 +42,4 @@ USER wrench
 WORKDIR /home/wrench
 
 # set user's environment variable
-ENV CXX="clang++-10" CC="clang-10"
+ENV CXX="g++" CC="gcc"
