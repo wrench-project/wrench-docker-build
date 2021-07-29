@@ -2,14 +2,16 @@ FROM wrenchproject/wrench-build:ubuntu-focal-gcc9
 
 MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
 
+USER root
+WORKDIR /tmp
+
+RUN echo "wrench ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN apt-get install -y vim nano
+
 #################################################
 # INSTALL WRENCH
 #################################################
 
-USER root
-WORKDIR /tmp
-
-# install WRENCH
 RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make && make install
 
 # copy examples
