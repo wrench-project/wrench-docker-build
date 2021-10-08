@@ -12,7 +12,7 @@ RUN apt-get install -y vim nano
 # INSTALL WRENCH
 #################################################
 
-RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make && make install
+RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make -j2 && make install
 
 # copy examples
 RUN ln -s /usr/local/wrench/examples /home/wrench/examples

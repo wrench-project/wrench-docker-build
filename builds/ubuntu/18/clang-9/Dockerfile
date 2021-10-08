@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
+MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
 
 # add repositories
 RUN apt-get update
@@ -26,7 +26,7 @@ ENV CXX="clang++-9" CC="clang-9"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/uploads/b95690ca814bc12e905115e51e45112d/simgrid-3.27.tar.gz && tar -xf simgrid-3.27.tar.gz && cd simgrid-3.27 && cmake . && make && sudo make install && cd .. && rm -rf simgrid-3.27*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.29/simgrid-v3.29.tar.gz && tar -xf simgrid-v3.29.tar.gz && cd simgrid-v3.29 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.29*
 
 # install pugixml
 RUN wget https://github.com/zeux/pugixml/releases/download/v1.8.1/pugixml-1.8.1.tar.gz && tar -xf pugixml-1.8.1.tar.gz && cd pugixml-1.8 && cmake . && make && sudo make install && cd .. && rm -rf pugixml-1.8*

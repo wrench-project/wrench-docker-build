@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-MAINTAINER Rafael Ferreira da Silva <rafsilva@isi.edu>
+MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
 
 # add repositories
 RUN apt-get update
@@ -26,16 +26,16 @@ ENV CXX="g++-9" CC="gcc-9"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/uploads/b95690ca814bc12e905115e51e45112d/simgrid-3.27.tar.gz && tar -xf simgrid-3.27.tar.gz && cd simgrid-3.27 && cmake . && make && sudo make install && cd .. && rm -rf simgrid-3.27*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.29/simgrid-v3.29.tar.gz && tar -xf simgrid-v3.29.tar.gz && cd simgrid-v3.29 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.29*
 
 # install pugixml
-RUN wget http://github.com/zeux/pugixml/releases/download/v1.11/pugixml-1.11.tar.gz && tar -xf pugixml-1.11.tar.gz && cd pugixml-1.11 && cmake . && make && sudo make install && cd .. && rm -rf pugixml-1.11*
+RUN wget http://github.com/zeux/pugixml/releases/download/v1.11/pugixml-1.11.tar.gz && tar -xf pugixml-1.11.tar.gz && cd pugixml-1.11 && cmake . && make -j12 && sudo make install && cd .. && rm -rf pugixml-1.11*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v3.9.1.tar.gz && tar -xf v3.9.1.tar.gz && cd json-3.9.1 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.9.1* json-3.9.1
+RUN wget https://github.com/nlohmann/json/archive/v3.9.1.tar.gz && tar -xf v3.9.1.tar.gz && cd json-3.9.1 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.9.1* json-3.9.1
 
 # install googletest
-RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0
+RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make -j12 && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0
 
 #################################################
 # WRENCH's user

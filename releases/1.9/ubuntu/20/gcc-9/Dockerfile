@@ -12,7 +12,7 @@ USER root
 WORKDIR /tmp
 
 # install WRENCH
-RUN wget https://github.com/wrench-project/wrench/archive/v${WRENCH_VERSION}.tar.gz && tar -zxf v${WRENCH_VERSION}.tar.gz && cd wrench-${WRENCH_VERSION} && cmake . && make && sudo make install
+RUN wget https://github.com/wrench-project/wrench/archive/v${WRENCH_VERSION}.tar.gz && tar -zxf v${WRENCH_VERSION}.tar.gz && cd wrench-${WRENCH_VERSION} && cmake . && make -j2 && sudo make install
 
 # copy examples
 RUN ln -s /usr/local/wrench/examples /home/wrench/examples
