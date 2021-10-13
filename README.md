@@ -17,6 +17,6 @@ The following example shows the steps to build a `ubuntu-focal-gcc9` container a
 $ git clone https://github.com/wrench-project/wrench-docker-build
 $ cd builds
 $ cd ubuntu-focal-gcc9
-$ docker build --no-cache -t ubuntu-focal-gcc9 .
-$ docker push ubuntu-focal-gcc9
+$ docker build --no-cache -t wrenchproject/wrench-build:ubuntu-focal-gcc9 .
+$ docker push wrenchproject/wrench-build:ubuntu-focal-gcc9
 ```
