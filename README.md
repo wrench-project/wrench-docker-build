@@ -13,10 +13,11 @@ Docker Hub for WRENCH Builds: https://hub.docker.com/r/wrenchproject/wrench-buil
 
 The following example shows the steps to build a `ubuntu-focal-gcc9` container and push to DockerHub:
 
-```
+```~.bash
 $ git clone https://github.com/wrench-project/wrench-docker-build
 $ cd builds
 $ cd ubuntu-focal-gcc9
 $ docker build --no-cache -t wrenchproject/wrench-build:ubuntu-focal-gcc9 .
+$ docker login # only necessary if not logged already
 $ docker push wrenchproject/wrench-build:ubuntu-focal-gcc9
 ```
