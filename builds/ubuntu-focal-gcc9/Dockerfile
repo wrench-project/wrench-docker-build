@@ -32,10 +32,10 @@ RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.29/simgrid-v3.29.tar.
 RUN wget http://github.com/zeux/pugixml/releases/download/v1.11/pugixml-1.11.tar.gz && tar -xf pugixml-1.11.tar.gz && cd pugixml-1.11 && cmake . && make -j12 && sudo make install && cd .. && rm -rf pugixml-1.11*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v3.9.1.tar.gz && tar -xf v3.9.1.tar.gz && cd json-3.9.1 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.9.1* json-3.9.1
+RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.4.tar.gz && tar -xf v3.10.4.tar.gz && cd json-3.10.4 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.10.4* json-3.10.4
 
 # install googletest
-RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make -j12 && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0
+RUN wget https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j12 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
 
 #################################################
 # WRENCH's user
