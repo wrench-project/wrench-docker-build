@@ -26,7 +26,7 @@ ENV CXX="clang++-10" CC="clang-10"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.29/simgrid-v3.29.tar.gz && tar -xf simgrid-v3.29.tar.gz && cd simgrid-v3.29 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.29*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.30/simgrid-v3.30.tar.gz && tar -xf simgrid-v3.30.tar.gz && cd simgrid-v3.30 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.30*
 
 # install pugixml
 RUN wget http://github.com/zeux/pugixml/releases/download/v1.11/pugixml-1.11.tar.gz && tar -xf pugixml-1.11.tar.gz && cd pugixml-1.11 && cmake . && make -j12 && sudo make install && cd .. && rm -rf pugixml-1.11*

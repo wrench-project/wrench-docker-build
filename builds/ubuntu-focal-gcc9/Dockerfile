@@ -8,14 +8,15 @@ RUN apt-get update
 # add wrench user
 RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
 
-# install compiler
-RUN apt-get -y install g++ gcc
 
 # set timezone
 RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov default-jre
+
+# install compiler
+RUN apt-get -y install g++ gcc
 
 #################################################
 # WRENCH's dependencies
@@ -26,7 +27,7 @@ ENV CXX="g++-9" CC="gcc-9"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.29/simgrid-v3.29.tar.gz && tar -xf simgrid-v3.29.tar.gz && cd simgrid-v3.29 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.29*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.30/simgrid-v3.30.tar.gz && tar -xf simgrid-v3.30.tar.gz && cd simgrid-v3.30 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.30*
 
 # install pugixml
 RUN wget http://github.com/zeux/pugixml/releases/download/v1.11/pugixml-1.11.tar.gz && tar -xf pugixml-1.11.tar.gz && cd pugixml-1.11 && cmake . && make -j12 && sudo make install && cd .. && rm -rf pugixml-1.11*

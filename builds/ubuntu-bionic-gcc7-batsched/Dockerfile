@@ -62,7 +62,8 @@ RUN git clone https://framagit.org/batsim/intervalset.git && cd intervalset* && 
 RUN wget https://github.com/emilk/loguru/archive/v2.0.0.tar.gz && tar -xf v2.0.0.tar.gz && cd loguru-* &&  sudo cp ./loguru.hpp /usr/local/include/ && $CXX -std=c++11 -o libloguru.so -shared -pthread -fPIC loguru.cpp && sudo cp ./libloguru.so /usr/local/lib/ &&  cd .. && rm -rf loguru-* v2.0.0.tar.gz
 
 # Batsched
-RUN git clone https://framagit.org/batsim/batsched.git && cd batsched* && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make -j12 && sudo make install && cd ../../ && rm -rf batsched*
+#RUN git clone https://framagit.org/batsim/batsched.git && cd batsched* && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make -j12 && sudo make install && cd ../../ && rm -rf batsched*
+RUN wget https://gitlab.inria.fr/batsim/batsched/-/archive/v1.4.0/batsched-v1.4.0.tar.gz && tar -xzf batsched-v1.4.0.tar.gz && cd batsched-v1.4.0 && mkdir build && cd build && cmake .. -DREDOX_LIBRARY:FILEPATH=/usr/local/lib64/libredox.so && make -j12 && sudo make install && cd ../../ && rm -rf batsched*
 
 
 #################################################

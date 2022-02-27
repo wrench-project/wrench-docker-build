@@ -11,6 +11,9 @@ ENV WRENCH_VERSION="1.0.1"
 USER root
 WORKDIR /tmp
 
+# install LEMON
+RUN wget http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz && tar -zxf lemon-1.3.1.tar.gz && cd lemon-1.3.1 && cmake . && sudo make install
+
 # install WRENCH
 RUN wget https://github.com/wrench-project/wrench/archive/${WRENCH_VERSION}.tar.gz && tar -zxf ${WRENCH_VERSION}.tar.gz && cd wrench-${WRENCH_VERSION} && cmake . && make && sudo make install
 
