@@ -26,10 +26,7 @@ ENV CXX="clang++-9" CC="clang-9"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.30/simgrid-v3.30.tar.gz && tar -xf simgrid-v3.30.tar.gz && cd simgrid-v3.30 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.30*
-
-# install pugixml
-RUN wget https://github.com/zeux/pugixml/releases/download/v1.8.1/pugixml-1.8.1.tar.gz && tar -xf pugixml-1.8.1.tar.gz && cd pugixml-1.8 && cmake . && make && sudo make install && cd .. && rm -rf pugixml-1.8*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.31*
 
 # install json for modern c++
 RUN wget https://github.com/nlohmann/json/archive/v3.7.0.tar.gz && tar -xf v3.7.0.tar.gz && cd json-3.7.0 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.7.0* json-3.7.0

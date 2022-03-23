@@ -55,7 +55,8 @@ RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2
 
 # Intervalset
 RUN apt-get install -y python3-pip ninja-build && pip3 install --user meson && mv /root/.local/bin/meson /usr/local/bin
-RUN git clone https://framagit.org/batsim/intervalset.git && cd intervalset* && meson build && cd build && ninja && sudo meson install && cd ../.. && rm -rf intervalset*
+#RUN git clone https://framagit.org/batsim/intervalset.git && cd intervalset* && meson build && cd build && ninja && sudo meson install && cd ../.. && rm -rf intervalset*
+RUN wget https://framagit.org/batsim/intervalset/-/archive/master/intervalset-master.tar.gz && tar -xzf intervalset-master.tar.gz && cd intervalset-master && meson build && cd build && ninja && sudo meson install && cd ../.. && rm -rf intervalset*
 
 # Loguru
 #RUN wget https://raw.githubusercontent.com/emilk/loguru/master/loguru.hpp && sudo cp ./loguru.hpp /usr/local/include/ && rm loguru.hpp
