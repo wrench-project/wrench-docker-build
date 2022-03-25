@@ -5,9 +5,6 @@ MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
 # add repositories
 RUN apt-get update
 
-# add wrench user
-RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
-
 # install compiler
 RUN apt-get -y install clang-10
 
@@ -37,6 +34,9 @@ RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && t
 #################################################
 # WRENCH's user
 #################################################
+RUN useradd -ms /bin/bash wrench
+RUN adduser wrench sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER wrench
 WORKDIR /home/wrench

@@ -6,7 +6,6 @@ MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
 # BatSched Dependencies
 #################################################
 
-
 USER root
 ENV CXX="g++-7" CC="gcc-7"
 WORKDIR /tmp

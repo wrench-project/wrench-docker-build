@@ -5,9 +5,6 @@ MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
 # add repositories
 RUN apt-get update
 
-# add wrench user
-RUN useradd --gid 100 --uid 550 --create-home --password wrench wrench
-
 # install compiler
 RUN apt-get -y install g++ gcc
 
@@ -15,7 +12,10 @@ RUN apt-get -y install g++ gcc
 RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov default-jre
+RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov default-jre 
+
+# Python
+RUN apt-get -y install python3
 
 #################################################
 # WRENCH's dependencies
@@ -37,6 +37,9 @@ RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && ta
 #################################################
 # WRENCH's user
 #################################################
+RUN useradd -ms /bin/bash wrench
+RUN adduser wrench sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER wrench
 WORKDIR /home/wrench
