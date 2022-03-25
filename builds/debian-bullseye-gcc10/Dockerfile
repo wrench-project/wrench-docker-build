@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:bullseye
 
 MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
 
@@ -23,7 +23,7 @@ WORKDIR /tmp
 RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.31*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v3.7.0.tar.gz && tar -xf v3.7.0.tar.gz && cd json-3.7.0 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.7.0* json-3.7.0
+RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.5.tar.gz && tar -xf v3.10.5.tar.gz && cd json-3.10.5 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.10.5* json-3.10.5
 
 # install googletest
 RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz && tar xf release-1.8.0.tar.gz && cd googletest-release-1.8.0/googletest && cmake . && make -j12 && sudo make install && cd ../.. && rm -rf release-1.8.0.tar.gz googletest-release-1.8.0
