@@ -9,7 +9,7 @@ RUN apt-get update
 RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov default-jre
+RUN apt-get -y install pkg-config git cmake cmake-data graphviz libboost-all-dev wget sudo curl lcov default-jre flex bison
 
 # install compiler
 RUN apt-get -y install g++ gcc
@@ -22,14 +22,18 @@ RUN apt-get -y install g++ gcc
 ENV CXX="g++-9" CC="gcc-9"
 WORKDIR /tmp
 
+# install doxygen
+RUN wget https://www.doxygen.nl/files/doxygen-1.9.3.src.tar.gz && tar zxf doxygen-1.9.3.src.tar.gz && cd doxygen-1.9.3 && mkdir build && cd build && cmake -G "Unix Makefiles" .. && make -j2 && make install && cd ../.. && rm -rf doxygen-1.9.3*
+RUN apt install -y texlive texlive-font-utils
+
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.31*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j4 && sudo make install && cd .. && rm -rf simgrid-v3.31*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.4.tar.gz && tar -xf v3.10.4.tar.gz && cd json-3.10.4 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.10.4* json-3.10.4
+RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.4.tar.gz && tar -xf v3.10.4.tar.gz && cd json-3.10.4 && cmake . && make -j4 && $SUDO make install && cd .. && rm -rf v3.10.4* json-3.10.4
 
 # install googletest
-RUN wget https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j12 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
+RUN wget https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j4 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
 
 #################################################
 # WRENCH's user
