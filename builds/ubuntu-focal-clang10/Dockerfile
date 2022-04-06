@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
+LABEL org.opencontainers.image.authors="silvarf@ornl.gov,henric@hawaii.edu"
 
 # add repositories
 RUN apt-get update
@@ -12,7 +12,7 @@ RUN apt-get -y install clang-10
 RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 
 # build environment
-RUN apt-get -y install pkg-config git cmake cmake-data doxygen doxygen-doc doxygen-latex doxygen-gui graphviz libboost-all-dev wget sudo curl lcov
+RUN apt-get -y install pkg-config git cmake cmake-data libboost-all-dev wget sudo curl lcov
 
 #################################################
 # WRENCH's dependencies
@@ -23,13 +23,13 @@ ENV CXX="clang++-10" CC="clang-10"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.31*
+RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j2 && sudo make install && cd .. && rm -rf simgrid-v3.31*
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/v3.9.1.tar.gz && tar -xf v3.9.1.tar.gz && cd json-3.9.1 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.9.1* json-3.9.1
+RUN wget https://github.com/nlohmann/json/archive/v3.9.1.tar.gz && tar -xf v3.9.1.tar.gz && cd json-3.9.1 && cmake . && make -j4 && $SUDO make install && cd .. && rm -rf v3.9.1* json-3.9.1
 
 # install googletest
-RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make -j12 && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0
+RUN wget https://github.com/google/googletest/archive/release-1.10.0.tar.gz && tar xf release-1.10.0.tar.gz && cd googletest-release-1.10.0 && cmake . && make -j4 && sudo make install && cd .. && rm -rf release-1.10.0.tar.gz googletest-release-1.10.0
 
 #################################################
 # WRENCH's user
