@@ -6,6 +6,7 @@ USER root
 WORKDIR /tmp
 
 RUN echo "wrench ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN apt-get update
 RUN apt-get install -y vim nano
 
 #################################################
