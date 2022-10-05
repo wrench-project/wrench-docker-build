@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM amd64/ubuntu:jammy
 
 LABEL org.opencontainers.image.authors="silvarf@ornl.gov,henric@hawaii.edu"
 
@@ -23,7 +23,7 @@ ENV CXX="clang++" CC="clang"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget https://framagit.org/simgrid/simgrid/-/archive/v3.31/simgrid-v3.31.tar.gz && tar -xf simgrid-v3.31.tar.gz && cd simgrid-v3.31 && cmake . && make -j4 && sudo make install && cd .. && rm -rf simgrid-v3.31*
+RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.32/simgrid-v3.32.tar.gz && tar -xf simgrid-v3.32.tar.gz && cd simgrid-v3.32 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.32*
 
 # install json for modern c++
 RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.5.tar.gz && tar -xf v3.10.5.tar.gz && cd json-3.10.5 && cmake . && make -j4 && make install && cd .. && rm -rf v3.10.5* json-3.10.5
