@@ -32,12 +32,17 @@ RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.5.tar.gz && ta
 RUN wget https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j4 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
 
 #################################################
-# Batsched
+# Batsched, ZMQ
 #################################################
 
 RUN apt-get install -y nix-bin
 RUN echo "filter-syscalls = false" >> /etc/nix/nix.conf
 RUN nix-env -iA batsched -f 'https://github.com/oar-team/nur-kapack/archive/master.tar.gz'
+
+# install CPPZMQ
+RUN wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz && tar xvzf zeromq-4.2.2.tar.gz && cd zeromq-4.2.2 && ./configure && make && sudo make install && cd .. && rm -rf zeromq-4.2.2
+RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2.tar.gz && cd cppzmq-4.2.2/ && mkdir build && cd build/ && cmake .. && sudo make -j4 install && cd ../../ && rm -rf v4.2.2.tar.gz cppzmq*
+
 
 
 #################################################
