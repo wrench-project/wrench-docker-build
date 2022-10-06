@@ -41,6 +41,7 @@ RUN nix-env -iA batsched -f 'https://github.com/oar-team/nur-kapack/archive/mast
 
 # install CPPZMQ
 #RUN wget https://github.com/zeromq/libzmq/releases/download/v4.2.2/zeromq-4.2.2.tar.gz && tar xvzf zeromq-4.2.2.tar.gz && cd zeromq-4.2.2 && ./configure && make && sudo make install && cd .. && rm -rf zeromq-4.2.2
+
 RUN apt-get install -y libczmq-dev
 #RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz && tar xf v4.2.2.tar.gz && cd cppzmq-4.2.2/ && mkdir build && cd build/ && cmake .. && sudo make -j4 install && cd ../../ && rm -rf v4.2.2.tar.gz cppzmq*
 

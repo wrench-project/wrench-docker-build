@@ -11,8 +11,18 @@ RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninte
 # build environment
 RUN apt-get -y install pkg-config git cmake cmake-data libboost-all-dev wget sudo curl
 
+# install doxygen and sphinx
+RUN apt-get install -y doxygen
+RUN apt-get install -y python3 
+RUN apt-get install -y python3-pip
+RUN pip3 install --upgrade pip
+RUN pip3 install Sphinx sphinx-rtd-theme breathe recommonmark
+
 # install compiler
 RUN apt-get -y install gcc g++
+
+# install lvoc
+RUN apt-get -y install lcov
 
 #################################################
 # WRENCH's dependencies
