@@ -59,3 +59,6 @@ WORKDIR /home/wrench
 
 # set user's environment variable
 ENV CXX="g++" CC="gcc"
+
+# add the nix-installed batsched to the path
+ENV PATH="${PATH}:/nix/var/nix/profiles/default/bin"
