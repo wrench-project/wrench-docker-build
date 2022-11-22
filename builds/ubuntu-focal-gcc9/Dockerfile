@@ -34,7 +34,9 @@ WORKDIR /tmp
 RUN wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz && tar -xf cmake-3.24.2.tar.gz && cd cmake-3.24.2 && ./bootstrap -- -DCMAKE_USE_OPENSSL=OFF && make -j2 && sudo make install
 
 # install SimGrid
-RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.32/simgrid-v3.32.tar.gz && tar -xf simgrid-v3.32.tar.gz && cd simgrid-v3.32 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.32*
+#RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.32/simgrid-v3.32.tar.gz && tar -xf simgrid-v3.32.tar.gz && cd simgrid-v3.32 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.32*
+RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 17ac6c61bd407825851b824adbfa28d64fb69587 && mkdir build && cd build && cmake .. && make -j12 && sudo make install && cd ../.. && rm -rf simgrid
+
 
 # install json for modern c++
 RUN wget --no-check-certificate https://github.com/nlohmann/json/archive/refs/tags/v3.10.4.tar.gz && tar -xf v3.10.4.tar.gz && cd json-3.10.4 && cmake . && make -j4 && $SUDO make install && cd .. && rm -rf v3.10.4* json-3.10.4
