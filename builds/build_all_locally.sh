@@ -2,6 +2,6 @@ IMAGES=(debian-bullseye-gcc10 debian-buster-gcc8 ubuntu-focal-clang10 ubuntu-foc
 
 
 for toBuild in ${IMAGES[@]}; do
-    cd $toBuild; docker build -t wrenchproject/wrench-build:$toBuild . ; cd ..
+    cd $toBuild; docker build --platform linux/386 -t wrenchproject/wrench-build:$toBuild . ; cd ..
 done
 

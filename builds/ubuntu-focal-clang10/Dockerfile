@@ -27,7 +27,7 @@ RUN wget --no-check-certificate https://github.com/Kitware/CMake/releases/downlo
 
 # install SimGrid
 #RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.32/simgrid-v3.32.tar.gz && tar -xf simgrid-v3.32.tar.gz && cd simgrid-v3.32 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.32*
-RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 17ac6c61bd407825851b824adbfa28d64fb69587 && mkdir build && cd build && cmake .. && make -j12 && sudo make install && cd ../.. && rm -rf simgrid
+RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 5a4efdbedd401027e9650c825fc09449c5bd8d3c && mkdir build && cd build && cmake .. && make -j12 && sudo make install && cd ../.. && rm -rf simgrid
 
 
 # install json for modern c++
