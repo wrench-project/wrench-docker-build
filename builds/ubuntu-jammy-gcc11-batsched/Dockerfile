@@ -24,7 +24,7 @@ WORKDIR /tmp
 
 # install SimGrid
 #RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.32/simgrid-v3.32.tar.gz && tar -xf simgrid-v3.32.tar.gz && cd simgrid-v3.32 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.32*
-RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 5a4efdbedd401027e9650c825fc09449c5bd8d3c && mkdir build && cd build && cmake .. && make -j12 && sudo make install && cd ../.. && rm -rf simgrid
+RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout dbb4b9d8b72ec01fe1748a7eb6b32222ffe3ece5 && mkdir build && cd build && cmake .. && make -j12 && sudo make install && cd ../.. && rm -rf simgrid
 
 
 # install json for modern c++
