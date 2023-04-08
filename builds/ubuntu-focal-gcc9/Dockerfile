@@ -18,7 +18,6 @@ RUN apt-get -y install lcov
 #RUN apt-get -y install default-jre
 RUN apt-get -y install flex
 RUN apt-get -y install bison
-RUN apt-get -y install doxygen
 
 # install compiler
 RUN apt-get -y install g++ gcc
