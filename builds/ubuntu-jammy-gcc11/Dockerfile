@@ -19,7 +19,9 @@ RUN pip3 install --upgrade pip
 RUN pip3 install Sphinx sphinx-rtd-theme breathe recommonmark
 
 # install swagger-codegen
-RUN apt-get install -y default-jdk
+RUN pip3 install jsonref
+RUN apt-get install -y libasio-dev
+RUN apt-get install -y openjdk-11-jdk
 RUN cd /tmp/ && wget https://repo1.maven.org/maven2/io/swagger/codegen/v3/swagger-codegen-cli/3.0.41/swagger-codegen-cli-3.0.41.jar -O swagger-codegen-cli.jar
 RUN echo "#!/bin/bash" > /usr/local/bin/swagger-codegen
 RUN echo "java -jar /tmp/swagger-codegen-cli.jar \$@" >> /usr/local/bin/swagger-codegen
