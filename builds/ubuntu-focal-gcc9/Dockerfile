@@ -44,6 +44,7 @@ RUN wget --no-check-certificate https://github.com/nlohmann/json/archive/refs/ta
 RUN wget --no-check-certificate https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j4 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
 
 # install sphinx docs
+RUN apt-get update
 RUN apt-get install -y python3-pip
 RUN pip3 install Sphinx sphinx-rtd-theme breathe recommonmark
 
