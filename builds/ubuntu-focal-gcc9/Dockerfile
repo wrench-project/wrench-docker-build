@@ -31,17 +31,18 @@ ENV CXX="g++-9" CC="gcc-9"
 WORKDIR /tmp
 
 # install cmake 3.24
-RUN wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz && tar -xf cmake-3.24.2.tar.gz && cd cmake-3.24.2 && ./bootstrap -- -DCMAKE_USE_OPENSSL=OFF && make -j2 && sudo make install
+RUN wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.24.2/cmake-3.24.2.tar.gz && tar -xf cmake-3.24.2.tar.gz && cd cmake-3.24.2 && ./bootstrap -- -DCMAKE_USE_OPENSSL=OFF && make -j12 && sudo make install
 
 # install SimGrid
-RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.34/simgrid-v3.34.tar.gz && tar -xf simgrid-v3.34.tar.gz && cd simgrid-v3.34 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.34*
+#RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.34/simgrid-v3.34.tar.gz && tar -xf simgrid-v3.34.tar.gz && cd simgrid-v3.34 && cmake . && make -j12 && sudo make install && cd .. && rm -rf simgrid-v3.34*
+RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 98331a543f36f7991a92affa966a8f162c240984 && mkdir build && cd build && cmake .. && make -j12 && sudo make install
 
 
 # install json for modern c++
-RUN wget --no-check-certificate https://github.com/nlohmann/json/archive/refs/tags/v3.10.4.tar.gz && tar -xf v3.10.4.tar.gz && cd json-3.10.4 && cmake . && make -j4 && $SUDO make install && cd .. && rm -rf v3.10.4* json-3.10.4
+RUN wget --no-check-certificate https://github.com/nlohmann/json/archive/refs/tags/v3.10.4.tar.gz && tar -xf v3.10.4.tar.gz && cd json-3.10.4 && cmake . && make -j12 && $SUDO make install && cd .. && rm -rf v3.10.4* json-3.10.4
 
 # install googletest
-RUN wget --no-check-certificate https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j4 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
+RUN wget --no-check-certificate https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j12 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
 
 # install sphinx docs
 RUN apt-get update
