@@ -12,12 +12,14 @@ RUN echo "America/Los_Angeles" > /etc/timezone && export DEBIAN_FRONTEND=noninte
 # build environment
 RUN apt-get -y install pkg-config
 RUN apt-get -y install graphviz
-RUN apt-get -y install libboost-all-dev
 RUN apt-get -y install wget sudo curl make git
 RUN apt-get -y install lcov
 #RUN apt-get -y install default-jre
 RUN apt-get -y install flex
 RUN apt-get -y install bison
+
+# install recent boost
+RUN wget --no-check-certificate https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.gz && tar -xvf boost_1_76_0.tar.gz && cd boost_1_76_0 && ./bootstrap.sh && ./b2 && ./b2 install && cd .. && rm -rf boost_1_76_0
 
 # install compiler
 RUN apt-get -y install g++ gcc
