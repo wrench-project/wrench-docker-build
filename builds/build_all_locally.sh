@@ -1,5 +1,6 @@
-IMAGES=(debian-bullseye-gcc10 ubuntu-jammy-clang14 ubuntu-jammy-gcc11 ubuntu-jammy-gcc11-batsched)
-
+#!/bin/bash
+#
+IMAGES=$(ls . | grep "-")
 
 for toBuild in ${IMAGES[@]}; do
     cd $toBuild
