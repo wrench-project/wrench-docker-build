@@ -1,6 +1,6 @@
 FROM wrenchproject/wrench-build:ubuntu-jammy-gcc11
 
-MAINTAINER Rafael Ferreira da Silva <silvarf@ornl.gov>
+LABEL org.opencontainers.image.authors="silvarf@ornl.gov,henric@hawaii.edu"
 
 ENV WRENCH_VERSION="2.3"
 
@@ -30,4 +30,4 @@ WORKDIR /home/wrench
 
 # set user's environment variable
 ENV CXX="g++-11" CC="gcc-11"
-ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+#ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
