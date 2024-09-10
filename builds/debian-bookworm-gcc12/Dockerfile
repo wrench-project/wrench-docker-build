@@ -20,14 +20,14 @@ ENV CXX="g++" CC="gcc"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.36/simgrid-v3.36.tar.gz && tar -xf simgrid-v3.36.tar.gz && cd simgrid-v3.36 && cmake . && make  && sudo make install && cd .. && rm -rf simgrid-v3.36*
-#RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 1f1b85861ea71dd27d362b70f268b580c1f8c7c4 && mkdir build && cd build && cmake .. && make && sudo make install
+RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.36/simgrid-v3.36.tar.gz && tar -xf simgrid-v3.36.tar.gz && cd simgrid-v3.36 && cmake . && make -j4  && sudo make install && cd .. && rm -rf simgrid-v3.36*
+#RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 1f1b85861ea71dd27d362b70f268b580c1f8c7c4 && mkdir build && cd build && cmake .. && make -j4 && sudo make install
 
 # install json for modern c++
-RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.5.tar.gz && tar -xf v3.10.5.tar.gz && cd json-3.10.5 && cmake . && make && $SUDO make install && cd .. && rm -rf v3.10.5* json-3.10.5
+RUN wget https://github.com/nlohmann/json/archive/refs/tags/v3.10.5.tar.gz && tar -xf v3.10.5.tar.gz && cd json-3.10.5 && cmake . && make -j4 && $SUDO make install && cd .. && rm -rf v3.10.5* json-3.10.5
 
 # install googletest
-RUN wget https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
+RUN wget https://github.com/google/googletest/archive/refs/tags/release-1.11.0.tar.gz && tar xf release-1.11.0.tar.gz && cd googletest-release-1.11.0 && cmake . && make -j4 && sudo make install && cd .. && rm -rf release-1.11.0.tar.gz googletest-release-1.11.0
 
 #################################################
 # WRENCH's user
