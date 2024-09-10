@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 LABEL org.opencontainers.image.authors="silvarf@ornl.gov,henric@hawaii.edu"
 
@@ -20,7 +20,7 @@ ENV CXX="g++" CC="gcc"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.36/simgrid-v3.36.tar.gz && tar -xf simgrid-v3.36.tar.gz && cd simgrid-v3.36 && cmake . && make && sudo make install && cd .. && rm -rf simgrid-v3.36*
+RUN wget --no-check-certificate https://framagit.org/simgrid/simgrid/-/archive/v3.36/simgrid-v3.36.tar.gz && tar -xf simgrid-v3.36.tar.gz && cd simgrid-v3.36 && cmake . && make  && sudo make install && cd .. && rm -rf simgrid-v3.36*
 #RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 1f1b85861ea71dd27d362b70f268b580c1f8c7c4 && mkdir build && cd build && cmake .. && make && sudo make install
 
 # install json for modern c++

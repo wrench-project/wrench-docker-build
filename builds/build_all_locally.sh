@@ -1,5 +1,8 @@
 #!/bin/bash
 #
+
+set -e
+
 IMAGES=$(ls . | grep "-")
 
 for toBuild in ${IMAGES[@]}; do
@@ -7,6 +10,6 @@ for toBuild in ${IMAGES[@]}; do
     echo "***"
     echo "*** BUILDING $toBuild ***"
     echo "***"
-    docker build --platform linux/386 -t wrenchproject/wrench-build:$toBuild . ; cd ..
+    docker build --platform linux/amd64 -t wrenchproject/wrench-build:$toBuild . ; cd ..
 done
 
