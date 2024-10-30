@@ -22,6 +22,7 @@ RUN pip3 install --upgrade pip
 RUN pip install jsonref
 
 # install WRENCH
+RUN git config --global http.postBuffer 524288000
 RUN git clone https://github.com/wrench-project/wrench && cd wrench && mkdir build && cd build && cmake .. && make -j12 wrench-daemon examples && make install && cp -r ./examples /home/wrench/ && chown -R wrench /home/wrench && cd ../.. && /bin/rm -rf wrench
 
 # fix the run_all_examples.sh script
