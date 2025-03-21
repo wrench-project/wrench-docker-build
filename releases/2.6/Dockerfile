@@ -1,4 +1,4 @@
-FROM wrenchproject/wrench-build:ubuntu-jammy-gcc11
+FROM wrenchproject/wrench-build:ubuntu-noble-gcc13
 
 LABEL org.opencontainers.image.authors="silvarf@ornl.gov,henric@hawaii.edu"
 
@@ -18,9 +18,7 @@ RUN apt-get update
 RUN apt-get install libasio-dev
 
 # Install Python and jsonref
-RUN apt-get install -y python3-pip
-RUN pip3 install --upgrade pip
-RUN pip install jsonref
+RUN pip3 install --break-system-packages jsonref
 
 # install WRENCH
 RUN wget https://github.com/wrench-project/wrench/archive/v${WRENCH_VERSION}.tar.gz && tar -zxf v${WRENCH_VERSION}.tar.gz && cd wrench-${WRENCH_VERSION} && mkdir build && cd build && cmake .. && make -j12 wrench-daemon examples && sudo make install && cp -r ./examples /home/wrench/ && chown -R wrench /home/wrench && cd ../.. && /bin/rm -rf wrench-${WRENCH_VERSION}

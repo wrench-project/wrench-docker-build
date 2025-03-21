@@ -1,4 +1,4 @@
-FROM wrenchproject/wrench-build:ubuntu-jammy-gcc11
+FROM wrenchproject/wrench-build:ubuntu-noble-gcc13
 
 LABEL org.opencontainers.image.authors="silvarf@ornl.gov,henric@hawaii.edu"
 
@@ -16,10 +16,8 @@ RUN echo "wrench ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN apt-get update
 RUN apt-get install libasio-dev
 
-# Install Python and jsonref
-RUN apt-get install -y python3-pip
-RUN pip3 install --upgrade pip
-RUN pip install jsonref
+# Install jsonref
+RUN pip install --break-system-packages jsonref
 
 # install WRENCH
 RUN git config --global http.postBuffer 524288000
