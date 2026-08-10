@@ -45,7 +45,7 @@ RUN wget --no-check-certificate https://github.com/simgrid/simgrid/releases/down
 #RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 1f1b85861ea71dd27d362b70f268b580c1f8c7c4 && mkdir build && cd build && cmake .. && make && sudo make install
 
 # install SimGrid's FSMod
-RUN wget https://github.com/simgrid/file-system-module/archive/refs/tags/v0.4.tar.gz && tar -xf v0.4.tar.gz && cd file-system-module-0.4 && mkdir build && cd build && cmake .. && make  && sudo make install && cd ../.. && rm -rf v0.4.tar.gz file-system-module-v*
+RUN wget https://github.com/simgrid/file-system-module/archive/refs/tags/v0.4.2.tar.gz && tar -xf v0.4.2.tar.gz && cd file-system-module-0.4.2 && mkdir build && cd build && cmake .. && make  && sudo make install && cd ../.. && rm -rf v0.4.2.tar.gz file-system-module-v*
 
 
 # install json for modern c++
