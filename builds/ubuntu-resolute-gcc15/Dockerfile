@@ -46,7 +46,7 @@ ENV CXX="g++" CC="gcc"
 WORKDIR /tmp
 
 # install SimGrid
-RUN wget --no-check-certificate https://github.com/simgrid/simgrid/releases/download/v4.1/simgrid-4.1.tar.gz && "${TAR}" -xf simgrid-4.1.tar.gz && cd simgrid-4.1 && cmake -Denable_java=OFF . && make  && sudo make install && cd .. && rm -rf simgrid-4.1*
+RUN wget --no-check-certificate https://github.com/simgrid/simgrid/releases/download/v4.1/simgrid-4.1.tar.gz && "${TAR}" -xf simgrid-4.1.tar.gz && cd simgrid-4.1 && cmake -Denable_java=OFF . && make -j4  && sudo make install && cd .. && rm -rf simgrid-4.1*
 #RUN git clone https://framagit.org/simgrid/simgrid.git && cd simgrid && git checkout 1f1b85861ea71dd27d362b70f268b580c1f8c7c4 && mkdir build && cd build && cmake .. && make && sudo make install
 
 # install SimGrid's FSMod
